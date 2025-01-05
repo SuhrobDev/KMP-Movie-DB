@@ -18,6 +18,6 @@ interface HomeRepository {
     suspend fun getPeople(): Result<BaseMovieListResponse<PeopleItemModel>, NetworkError>
     suspend fun getMovieActors(movieId: Long): Result<BasePeopleListResponse<MovieActorsItem>, NetworkError>
     suspend fun getSimilarMovies(movieId: Long): Result<BaseMovieListResponse<SimilarMovieItem>, NetworkError>
-
+    suspend fun getNowPlayingMovies(): Result<BaseMovieListResponse<MovieItemModel>, NetworkError>
 
 }

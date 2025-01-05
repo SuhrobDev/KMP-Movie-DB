@@ -49,4 +49,8 @@ class HomeRepositoryImpl(
     override suspend fun getSimilarMovies(movieId: Long): Result<BaseMovieListResponse<SimilarMovieItem>, NetworkError> {
         return client.getSimilarMovies(movieId)
     }
+
+    override suspend fun getNowPlayingMovies(): Result<BaseMovieListResponse<MovieItemModel>, NetworkError> {
+        return client.getNowPlaying(1)
+    }
 }

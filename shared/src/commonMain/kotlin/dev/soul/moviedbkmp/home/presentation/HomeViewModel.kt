@@ -7,10 +7,7 @@ import dev.soul.moviedbkmp.utils.onSuccess
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
@@ -27,30 +24,48 @@ class HomeViewModel(
         when (intent) {
             is HomeIntent.GetNowPlaying -> getNowPlaying()
             is HomeIntent.GetPeople -> getPeople()
+            is HomeIntent.GetNowPlayingMovies -> getNowPlayingMovies()
+        }
+    }
+
+    private fun getNowPlayingMovies() = viewModelScope.launch {
+        _uiState.update {
+            it.copy(isLoading = true)
+        }
+        viewModelScope.launch {
+            repository.getNowPlayingMovies().onSuccess { success ->
+                _uiState.update {
+                    it.copy(isLoading = false, nowPlayingMovies = success.results ?: emptyList())
+                }
+            }.onError { error ->
+                _uiState.update {
+                    it.copy(isLoading = false, error = error.name)
+                }
+            }
         }
     }
 
     private fun getNowPlaying() = viewModelScope.launch {
-        _uiState.value = _uiState.value.copy(
-            nowPlaying = repository.getNowPlaying()
-        )
+        _uiState.update {
+            it.copy(
+                nowPlaying = repository.getNowPlaying()
+            )
+        }
     }
 
     private fun getPeople() = viewModelScope.launch {
-        _uiState.value = _uiState.value.copy(
-            isLoading = true
-        )
+        _uiState.update {
+            it.copy(isLoading = true)
+        }
         viewModelScope.launch {
-            repository.getPeople().onSuccess {
-                _uiState.value = _uiState.value.copy(
-                    people = it.results ?: emptyList(),
-                    isLoading = false
-                )
-            }.onError {
-                _uiState.value = _uiState.value.copy(
-                    error = it.name,
-                    isLoading = false
-                )
+            repository.getPeople().onSuccess { success ->
+                _uiState.update {
+                    it.copy(isLoading = false, people = success.results ?: emptyList())
+                }
+            }.onError { error ->
+                _uiState.update {
+                    it.copy(isLoading = false, error = error.name)
+                }
             }
         }
     }

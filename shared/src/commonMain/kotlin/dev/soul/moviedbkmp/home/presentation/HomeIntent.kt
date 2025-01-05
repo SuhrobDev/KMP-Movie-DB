@@ -4,5 +4,6 @@ sealed class HomeIntent {
     object GetNowPlaying : HomeIntent()
 //    object GetMovieDetail : HomeIntent()
     object GetPeople : HomeIntent()
+    object GetNowPlayingMovies : HomeIntent()
 
 }

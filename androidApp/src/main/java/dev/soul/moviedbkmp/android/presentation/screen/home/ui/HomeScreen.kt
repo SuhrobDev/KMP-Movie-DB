@@ -96,7 +96,7 @@ fun HomeScreen(navController: NavHostController) {
         viewModel.onEvent(HomeIntent.GetPeople)
     }
 
-    val nowPlaying = homeUiState.nowPlaying.collectAsLazyPagingItems()
+    val nowPlaying = homeUiState.nowPlaying!!.collectAsLazyPagingItems()
 
     val lazyListState = rememberLazyListState()
     val isCarouselVisible = remember { mutableStateOf(true) }

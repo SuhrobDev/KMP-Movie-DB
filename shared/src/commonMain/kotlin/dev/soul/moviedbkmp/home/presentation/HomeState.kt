@@ -12,7 +12,8 @@ data class HomeState(
     val isLoading: Boolean = false,
     val nowPlaying: Flow<PagingData<MovieItemModel>>? = flowOf(PagingData.empty()),
     val error: String? = null,
-    val people: List<PeopleItemModel> = emptyList()
+    val people: List<PeopleItemModel> = emptyList(),
+    val nowPlayingMovies: List<MovieItemModel> = emptyList()
 )
 
 //fun <T : Any> Flow<PagingData<T>>.toListFlow(): List<T> {
