@@ -53,4 +53,7 @@ class HomeRepositoryImpl(
     override suspend fun getNowPlayingMovies(): Result<BaseMovieListResponse<MovieItemModel>, NetworkError> {
         return client.getNowPlaying(1)
     }
+    override suspend fun getPopularMovies(): Result<BaseMovieListResponse<MovieItemModel>, NetworkError> {
+        return client.getPopular(1)
+    }
 }

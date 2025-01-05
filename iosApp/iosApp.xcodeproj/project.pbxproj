@@ -40,6 +40,8 @@
 		130755CA2D1EA75F00B29AF6 /* search */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = search; sourceTree = "<group>"; };
 		130755CB2D1EA76900B29AF6 /* profile */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = profile; sourceTree = "<group>"; };
 		130755CD2D1EA7A700B29AF6 /* main */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = main; sourceTree = "<group>"; };
+		1375B7DD2D2A86B500560A06 /* fonts */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = fonts; sourceTree = "<group>"; };
+		1375B7EA2D2A8E4600560A06 /* utils */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = utils; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,8 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				1375B7EA2D2A8E4600560A06 /* utils */,
+				1375B7DD2D2A86B500560A06 /* fonts */,
 				130755CD2D1EA7A700B29AF6 /* main */,
 				130755CB2D1EA76900B29AF6 /* profile */,
 				130755CA2D1EA75F00B29AF6 /* search */,
@@ -123,6 +127,8 @@
 				130755CA2D1EA75F00B29AF6 /* search */,
 				130755CB2D1EA76900B29AF6 /* profile */,
 				130755CD2D1EA7A700B29AF6 /* main */,
+				1375B7DD2D2A86B500560A06 /* fonts */,
+				1375B7EA2D2A8E4600560A06 /* utils */,
 			);
 			name = iosApp;
 			productName = iosApp;

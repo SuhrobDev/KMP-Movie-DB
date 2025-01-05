@@ -20,11 +20,22 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>inter_bold.ttf</string>
+		<string>inter_medium.ttf</string>
+		<string>inter_regular.ttf</string>
+		<string>inter_semi_bold.ttf</string>
+		<string>inter_semibold.ttf</string>
+		<string>inter_thin.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
 	</dict>
+	<key>UILaunchScreen</key>
+	<dict/>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -44,7 +55,5 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Dark</string>
-	<key>UILaunchScreen</key>
-	<dict/>
 </dict>
 </plist>

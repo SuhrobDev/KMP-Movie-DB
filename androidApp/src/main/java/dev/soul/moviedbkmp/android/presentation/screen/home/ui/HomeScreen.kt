@@ -185,7 +185,7 @@ fun HomeScreen(navController: NavHostController) {
                                             )
                                         ) {
                                             Text(
-                                                text = item.title,
+                                                text = item.title ?: "",
                                                 color = Color.White,
                                                 fontSize = 20.sp,
                                                 fontFamily = FontFamily(
@@ -201,7 +201,7 @@ fun HomeScreen(navController: NavHostController) {
                                                         .padding(end = 6.dp)
                                                 )
                                                 Text(
-                                                    text = formatNumber(item.vote_average),
+                                                    text = formatNumber(item.vote_average ?: 0.0),
                                                     color = Color(0xFFFFA500)
                                                 )
                                             }
@@ -314,7 +314,7 @@ fun HomeScreen(navController: NavHostController) {
                         item?.let {
                             MovieItemView(
                                 movieItem = MovieItem(
-                                    title = it.title,
+                                    title = it.title ?: "",
                                     imageUrl = it.orgImage,
                                     age = "+18"
                                 )

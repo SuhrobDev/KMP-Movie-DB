@@ -25,6 +25,25 @@ class HomeViewModel(
             is HomeIntent.GetNowPlaying -> getNowPlaying()
             is HomeIntent.GetPeople -> getPeople()
             is HomeIntent.GetNowPlayingMovies -> getNowPlayingMovies()
+            is HomeIntent.GetPopularMovies -> getPopularMovies()
+        }
+    }
+
+    private fun getPopularMovies() = viewModelScope.launch {
+        _uiState.update {
+            it.copy(isLoading = true)
+        }
+
+        viewModelScope.launch {
+            repository.getPopularMovies().onSuccess { success ->
+                _uiState.update {
+                    it.copy(isLoading = false, popularMovies = success.results ?: emptyList())
+                }
+            }.onError { error ->
+                _uiState.update {
+                    it.copy(isLoading = false, error = error.name)
+                }
+            }
         }
     }
 

@@ -18,7 +18,7 @@ extension HomeScreen {
         @Published var error: String? = nil
         @Published var loading: Bool = false
         
-        @Published var state: HomeState = HomeState(isLoading: false, nowPlaying: nil, error: "", people: [])
+        @Published var state: HomeState = HomeState(isLoading: false, nowPlaying: nil, error: "", people: [], nowPlayingMovies: [], popularMovies: [])
                 
         private var handle: DisposableHandle?
         
