@@ -38,6 +38,7 @@ kotlin {
             implementation(libs.ktor.client.android)
             implementation(libs.ktor.client.okhttp)
 
+//            implementation(libs.coil)
         }
         commonMain.dependencies {
             implementation(libs.ktor.client.core)
@@ -51,6 +52,7 @@ kotlin {
             implementation(libs.paging.compose.common)
             implementation(libs.paging.common)
 
+//            implementation(libs.coil)
         }
 
         iosMain.dependencies {

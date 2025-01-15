@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct SearchScreen: View {
+
     var body: some View {
+        
         NavigationStack {
             VStack {
                 Text("Search Screen")
-                NavigationLink(destination: DetailScreen2()) {
-                    Text("Go to Detail 2")
-                }
+//                NavigationLink(destination: DetailScreen1(movieId: 123)) {
+//                    Text("Go to Detail 2")
+//                }
             }
         }
     }

@@ -6,8 +6,14 @@
 //  Copyright © 2024 orgName. All rights reserved.
 //
 import SwiftUI
+import shared
+import SwiftfulRouting
 
 struct HomeScreen: View {
+    
+    @Environment(\.router) var router2
+//    let router: AnyRouter
+    
     @State private var path = NavigationPath()
     @ObservedObject private var viewModel: IOSHomeViewModel = IOSHomeViewModel()
     
@@ -17,9 +23,10 @@ struct HomeScreen: View {
     @State private var dragOffset: CGFloat = 0
     @State private var isDragging: Bool = false
     
+    @State private var selectedMovie: MovieItemModel? = nil
+    
     var body: some View {
-        NavigationStack(path: $path) {
-            ScrollView(.vertical) {
+            ScrollView(.vertical,showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 16) {
                     // Carousel Section
                     GeometryReader { geometry in
@@ -29,8 +36,13 @@ struct HomeScreen: View {
                                     CarouselItemView(
                                         item: item,
                                         width: geometry.size.width,
-                                        height: geometry.size.height
-                                    )
+                                        height: geometry.size.height) { movie in
+                                            self.selectedMovie = movie
+                                            
+                                            router2.showScreen(.push, destination: {_ in 
+                                                DetailScreen1(movieId: Int(movie.id))
+                                            })
+                                        }
                                 }
                             }
                             .frame(
@@ -46,12 +58,20 @@ struct HomeScreen: View {
                                 }
                             }
                         }
+                        //                        .navigationDestination(isPresented: Binding(
+                        //                            get: { selectedMovie != nil },
+                        //                            set: { if !$0 { selectedMovie = nil } }
+                        //                        )) {//navigation trashmi hozir shundanmi muammo yoq data kelyapti static bersez get qilganizda keyin nmadir bolyaptimikna
+                        //                            //get togri qilinganmi ozi onAppearda call qilish kkmi event da, id notogri olib otyapmanmikin
+                        //                            if let movie = selectedMovie {
+                        //                                DetailScreen1(movieId: Int(movie.id))
+                        //                            }
+                        //                        }
+                        
                     }
                     .frame(height: UIScreen.main.bounds.height * 0.62)
                     
-                    
                     Spacer().frame(height: 16)
-                    
                     
                     Text("People").padding(.leading,16).font(.title3)
                     
@@ -90,16 +110,14 @@ struct HomeScreen: View {
                     }
                 }
                 
-                
-                Spacer()
-            }.edgesIgnoringSafeArea(.top)
-            
-        }
+                Spacer().frame(height: 72)
+            }
+            .edgesIgnoringSafeArea(.top)
+        
         .onAppear {
-            viewModel.startObserving()
-            viewModel.onEvent(event: .GetPeople())
-            viewModel.onEvent(event: .GetNowPlayingMovies())
-            viewModel.onEvent(event: .GetPopularMovies())
-        }
+                viewModel.onEvent(event: .GetPeople())
+                viewModel.onEvent(event: .GetNowPlayingMovies())
+                viewModel.onEvent(event: .GetPopularMovies())
+            }
     }
 }

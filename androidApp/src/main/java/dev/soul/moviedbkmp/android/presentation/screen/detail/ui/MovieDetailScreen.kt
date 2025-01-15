@@ -40,21 +40,21 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import coil.compose.rememberImagePainter
 import dev.soul.moviedbkmp.android.R
-import dev.soul.moviedbkmp.android.presentation.screen.detail.MovieDetailIntent
-import dev.soul.moviedbkmp.android.presentation.screen.detail.MovieDetailViewModel
+import dev.soul.moviedbkmp.android.presentation.screen.detail.AndroidMovieDetailViewModel
 import dev.soul.moviedbkmp.android.presentation.screen.home.ui.MovieItem
 import dev.soul.moviedbkmp.android.presentation.screen.home.ui.MovieItemView
 import dev.soul.moviedbkmp.android.utils.formatMinutesToHoursAndMinutes
 import dev.soul.moviedbkmp.android.utils.formatNumber
+import dev.soul.moviedbkmp.home.detail.MovieDetailIntent
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun MovieDetailScreen(navController: NavHostController, movieId: Long) {
-    val viewModel: MovieDetailViewModel = koinViewModel<MovieDetailViewModel>()
-    val detailUiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val viewModel: AndroidMovieDetailViewModel = koinViewModel<AndroidMovieDetailViewModel>()
+    val detailUiState by viewModel.state.collectAsStateWithLifecycle()
 
     LaunchedEffect(Unit) {
-        viewModel.handleIntent(MovieDetailIntent.Detail(movieId))
+        viewModel.onEvent(MovieDetailIntent.Detail(movieId))
     }
 
     val screenHeight = LocalConfiguration.current.screenHeightDp.dp

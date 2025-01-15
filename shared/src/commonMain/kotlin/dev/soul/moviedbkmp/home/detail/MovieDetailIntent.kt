@@ -1,4 +1,4 @@
-package dev.soul.moviedbkmp.android.presentation.screen.detail
+package dev.soul.moviedbkmp.home.detail
 
 sealed class MovieDetailIntent {
     data class Detail(val movieId: Long) : MovieDetailIntent()

@@ -7,6 +7,8 @@ struct CarouselItemView: View {
     var width: CGFloat
     var height: CGFloat
     
+    let onClick: (MovieItemModel) -> Void
+    
     var body: some View {
         ZStack(alignment: .bottom) {
             AsyncImage(url: URL(string: item.imageUrl)) { phase in
@@ -61,6 +63,7 @@ struct CarouselItemView: View {
                                 
                 Button(action: {
                     // Add your action here
+                    onClick(item)
                 }) {
                     HStack(spacing: 8) {
                         Text("Watch now")

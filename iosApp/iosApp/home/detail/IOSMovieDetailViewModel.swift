@@ -1,31 +1,32 @@
 //
-//  HomeViewModel.swift
+//  IOSMovieDetailViewModel.swift
 //  iosApp
 //
-//  Created by suhrob on 27/12/24.
-//  Copyright © 2024 orgName. All rights reserved.
+//  Created by suhrob on 06/01/25.
+//  Copyright © 2025 orgName. All rights reserved.
 //
 import Foundation
 import shared
 
-extension HomeScreen {
-    @MainActor class IOSHomeViewModel: ObservableObject {
+extension DetailScreen1{
+    
+    @MainActor class IOSMovieDetailViewModel: ObservableObject {
         
         private let service: HomeRepository
-        private let vm :HomeViewModel
+        private let vm: MovieDetailViewModel
         
-        @Published var state: HomeState = HomeState(isLoading: false, nowPlaying: nil, error: "", people: [], nowPlayingMovies: [], popularMovies: [])
+        @Published var state: MovieDetailState = MovieDetailState(isLoading: false, error: "", movieDetail: nil,  actors: [], similarMovies: [])
                 
         private var handle: DisposableHandle?
         
         init() {
             self.service = KoinDep().homeRepository
-            self.vm = HomeViewModel(repository: service, coroutineScope: nil)
+            self.vm = MovieDetailViewModel(repository: service, coroutineScope: nil)
             
-            startObserving()
+//            startObserving()
         }
         
-        func onEvent(event: HomeIntent) {
+        func onEvent(event: MovieDetailIntent) {
             self.vm.handleIntent(intent: event)
         }
        
@@ -35,8 +36,10 @@ extension HomeScreen {
                 guard let state = state else { return }
                
                 DispatchQueue.main.async {
+                    print("--------------------")
+                    print(state)
                     self.state = state
-                    print("stategg \(state)")
+                    print("statesss: \(state)")
                 }
             })
         }
@@ -46,5 +49,4 @@ extension HomeScreen {
         }
         
     }
-    
 }

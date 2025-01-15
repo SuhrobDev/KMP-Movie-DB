@@ -29,11 +29,9 @@ class InsultCensorClient(
             httpClient.get(
                 urlString = "$NOW_PLAYING"
             ) {
-
                 parameter("language", "en-US")
                 parameter("page", page)
                 parameter("api_key", "8454fdb3aa03f088967727c3a3f714e5")
-
             }
         } catch (e: UnresolvedAddressException) {
             e.printStackTrace()
